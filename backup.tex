@@ -1,0 +1,441 @@
+
+\documentclass[
+	% -- opções da classe memoir --
+	article,			% indica que é um artigo acadêmico
+	12pt,				% tamanho da fonte
+	oneside,			% para impressão apenas no recto. Oposto a twoside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE % títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	sumario=tradicional
+	]{abntex2}
+
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{nomencl} 			% Lista de simbolos
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\usepackage{listings}
+
+\usepackage{pgfplots}
+\usepackage{threeparttable}
+\usepackage{amsmath}
+
+% ---
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[num,abnt-emphasize=bf]{abntex2cite}	% Citações padrão ABNT
+\citebrackets[]
+
+% ---
+% Declare the path(s) where your graphic files are ----------------------------
+\graphicspath{{figs/}}
+\DeclareGraphicsExtensions{.pdf,.jpeg,.png,.jpg,.tikz}
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+%\nouppercaseheads
+\makepagestyle{meuestilo}
+  %%cabeçalhos
+  \makeevenhead{meuestilo} %%pagina par
+     {}{}{\vspace{-3em} \\ \footnotesize{VII INTERNATIONAL SYMPOSIUM ON INNOVATION AND TECHNOLOGY (SIINTEC)}\\ {\textit{One Planet, one Ocean and one Health. - 2021}\\ \vspace{\onelineskip}}}
+  \makeoddhead{meuestilo} %%pagina ímpar ou com oneside
+      {}{}{\vspace{-3em} \\ \footnotesize{VII INTERNATIONAL SYMPOSIUM ON INNOVATION AND TECHNOLOGY (SIINTEC)}\\ {\textit{One Planet, one Ocean and one Health. - 2021}\\ \vspace{\onelineskip}}} 
+  %\makeheadrule{meuestilo}{\textwidth}{\normalrulethickness} %linha
+  %% rodapé
+  \makeevenfoot{meuestilo}
+      {ISSN: 2357-7592}{}{}
+  \makeoddfoot{meuestilo} %%pagina ímpar ou com oneside
+      {ISSN: 2357-7592}{}{}
+
+% --- Informações de dados para CAPA e FOLHA DE ROSTO ---
+\titulo{TITLE ARIAL 14, BOLD AND UPPERCASE, JUSTIFIED, SIMPLE SPACE (\underline{in Portuguese}), WITH A MAXIMUM OF THREE LINES}
+
+\tituloestrangeiro{TITLE ARIAL 14, BOLD AND UPPERCASE, JUSTIFIED, SINGLE SPACE (\underline{in English}), WITH A MAXIMUM OF THREE LINES}
+
+
+\autor{
+João Vitor Silva Mendes\thanks{SENAI CIMATEC},  
+Danielle Mascarenhas dos Santos\thanks{SENAI CIMATEC}
+Adeilson de Sousa Silva\thanks{SENAI CIMATEC}
+Amanda Bandeira Aragão Rigaud Lima\thanks{SENAI CIMATEC}
+Herman Augusto Lepikson\thanks{SENAI CIMATEC}
+}
+
+
+% \local{Brasil}
+% \data{2018, v<VERSION>}
+% ---
+
+% ---
+% Configura\baselineskipr{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={Modelo de artigo científico com abnTeX2},
+	   pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{atigo científico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+
+\makeatother
+% --- 
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ---
+% Altera as margens padrões
+% ---
+\setlrmarginsandblock{3cm}{3cm}{*}
+\setulmarginsandblock{3cm}{3cm}{*}
+\checkandfixthelayout
+% ---
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% Espaçamento simples
+\SingleSpacing
+
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+\pagestyle{meuestilo}
+% Seleciona o idioma do documento (conforme pacotes do babel)
+%\selectlanguage{english}
+\selectlanguage{brazil}
+\frenchspacing 
+\pretextual
+\pagestyle{meuestilo}
+
+% titulo em outro idioma (opcional)
+
+
+% resumo em inglês
+% \renewcommand{\resumoname}{}
+% \begin{resumoumacoluna}
+%  \begin{otherlanguage*}{english}
+
+   \vspace*{2pt}
+
+   %\vspace{\onelineskip}
+   \noindent
+   \textbf{\large{EVALUATION OF THE ULTRASONIC TECHNIQUE FOR LEAKAGE DETECTION IN ONSHORE PIPELINES IN REMOTE AREAS}}
+  
+   \vspace{\onelineskip}
+   \noindent
+   \textit{
+      João Vitor Silva Mendes$^1$, Danielle Mascarenhas dos Santos$^a$, Adeilson de Sousa Silvar$^a$, Amanda Bandeira Aragão Rigaud Lima$^a$, 
+      Herman Augusto Lepikson$^a$.
+   }
+   \vspace{\onelineskip}
+
+   \noindent
+   $^{a, 1}$ \textit{Centro Universitário SENAI-CIMATEC, Brazi}\\
+   $^b$ \textit{Department, Institute Name, if any}
+
+   \vspace*{1.2cm}
+   \noindent
+   \normalsize
+   \textbf{Abstract:} The abstract must be written in Arial font, size 12, and within this area. The text should be justified. The abstract should include the objective, methodology, main results and conclusions. It should not exceed 10 lines.
+
+   \vspace{\onelineskip}
+   \noindent
+   \textbf{Keywords}: must include 3 to 5 keywords, separated by semicolons.
+%  \end{otherlanguage*}  
+% \end{resumoumacoluna}
+
+
+% resumo em português
+%\begin{resumoumacoluna}
+   \vspace*{1.5cm}
+   \noindent
+   \textbf{\large{AVALIAÇÃO DA TÉCNICA ULTRASSÔNICA PARA DETECÇÃO DE VAZAMENTO EM OLEODUTOS EM ÁREAS REMOTAS}}
+
+   \vspace{\onelineskip}
+   \noindent
+   \normalsize
+   \textbf{Resumo:} O resumo deve ser digitado em português e em fonte Arial tamanho 12, e dentro desta área. O texto deve ser justificado. O resumo deve conter o objetivo, metodologia, principais resultados e conclusões. Não deve ultrapassar 10 linhas.
+
+   \vspace{\onelineskip}
+   \noindent
+   \textbf{Palavras-chave:} deve ter no mínimo de 3 a 5 palavras-chave, em português, separadas por ponto e vírgula.
+%\end{resumoumacoluna}
+
+
+% ]  				% FIM DE ARTIGO EM DUAS COLUNAS
+% ---
+
+% \begin{center}\smaller
+% \textbf{Data de submissão e aprovação}: elemento obrigatório. Indicar dia, mês e ano
+
+% \textbf{Identificação e disponibilidade}: elemento opcional. Pode ser indicado 
+% o endereço eletrônico, DOI, suportes e outras informações relativas ao acesso.
+% \end{center}
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+\pagestyle{meuestilo}
+
+
+\newpage
+
+% ----------------------------------------------------------
+% Introdução
+% ----------------------------------------------------------
+\section{\textbf{INTRODUCTION}}
+
+
+
+
+\subsection{\textbf{Pipelines and the Problems that Cause Leaks.}}
+
+Pipelines and the problems that cause leaks.
+Currently, pipelines are considered the safest means of transporting fuel. 
+Today there are about 2.5 million kilometers of these pipelines transporting hydrocarbons in the world\cite{aba}. 
+However, even built and operated within the maximum international safety standards of the oil and gas industry, 
+the pipelines are subject to construction problems, deterioration processes and third party interference, 
+which can lead to leaks\cite{aba}\cite{gli}.
+Pipeline leaks are one of the most common types of accidents and one of the main causes of large losses and soil 
+contamination\cite{aba}\cite{lu}. 
+
+\subsection{\textbf{Environmental Problems Caused by Leaks.}}
+In Mexico, in Tabasco, in 2018, around 1600 hectares of soil contaminated by oil spills were 
+recorded, where one of the main causes is leaks in pipelines. 
+Due to the discovery of new oil and natural gas deposits in Mexico, such as Tabasco, 
+1there has been a large increase in infrastructure investments at the site due to the abundance of oil, 
+reaching around 1388 barrels per day\cite{Chan}. 
+Under these conditions, the exploration and extraction of hydrocarbons has caused major problems to the environment due to 
+the organic compounds that are generated with the oil spill at the site, generating several social impacts for residents of 
+regions close to the deposits\cite{Chan}\cite{raz}. 
+
+\subsection{\textbf{The Ultrasonic Method.}}
+The ultrasonic method is characterized as a hardware-based, acoustic method and non-invasive\cite{lu}. 
+A common way to use this method is to use a pulsar, a transducer, and a device to display the captured signals. The pulsar is 
+responsible for generating ultrasonic waves that travel along the walls of the ducts. A part of the energy of these waves 
+will be reflected, and these signals will be captured by the receiving transducer\cite{raz}. If a leak occurs, the fluid flowing 
+through the pipe will disturb these waves and cause a significant variation in the voltage picked up by the transducer. 
+The method has a high sensitivity, characteristic of acoustic methods, because of that there is a probability of false alarms, which is classified as a common rate when compared to other methods\cite{lu}.
+Also called lamb wave, the wave generated by the pulsar in steel pipes can be redirected and can propagate over a distance of 1km of a pipe. 
+Because of this, the ultrasonic technique presents itself as an ideal alternative for monitoring long ducts\cite{wang}.
+
+\subsection{\textbf{Objective}}
+Given the importance of the problem behind hydrocarbon leaks in pipelines, there is a need to use a leak detection technique that fits the proposed scenario. In this article, the ultrasonic detection technique will be evaluated, which will be inserted in the scenario of mature onshore oil production fields.
+
+\section{\textbf{METHODOLOGY (ARIAL 12)}}
+
+In order to evaluate the ultrasonic method for leakage detection in onshore pipelines in remote areas, the article uses the algorithm proposed by Marlow et. al. in Figure \ref{fig:figura-organograma} to perform the analyzes and identify the feasibility of using the technique\cite{marlow}.
+
+
+
+\begin{figure} [h!]	
+   \label{fig:figura-organograma}											 
+	\centering		
+	\caption{Algorithm to evaluation a technique.}
+	\includegraphics[width=1\textwidth]{metodo.png}
+    %\legend{\cite{marlow}}
+\end{figure}
+
+
+
+\section{\textbf{RESULTS AND DISCUSSION}}
+
+\subsection{\textbf{Determination of the pipeline type.}}
+At first it is necessary to determine the type of pipeline in which the method will be used. For analysis, the following variables will be analyzed considering table 1\cite{lu}. In this case it will be considered the next case: Size: medium; Distance: long; Location: rural; %Medium: mixed.
+The ultrasonic technique is a great alternative for long distances pipelines, and can be used in any situation in the table 1\cite{lu}\cite{wang}. 
+
+\begin{table}[h!]
+\label{tab:pipes}
+\centering		
+\caption{Pipelines characteristics\cite{lu}.}
+\begin{tabular}{|c|c|}
+\hline
+Factor & Characteristics  \\ \hline
+Size & Large/medium/small  \\ \hline
+Distance & Long/moderate/short  \\ \hline
+Location & Urban/rural/mixed/sub-sea  \\ \hline
+%Medium & Oil/Gas/mixed \\ \hline%
+\end{tabular}
+\end{table}
+
+\subsection{\textbf{Determination of technical feasibility.}}
+
+At this stage, it is necessary to evaluate the items in table 2, and assess which ones are relevant to the case in question and thus assess whether the technique satisfies the items.\\
+
+\begin{table}[h!]
+\label{tab:feasi}
+\centering		
+\caption{Pipelines characteristics\cite{lu}.}
+\begin{tabular}{|c|c|}
+\hline
+Access requirement & Are there any specific access requirement (power, launch, etc.)? \\ \hline
+Pipeline condition related limitations & Is there a limitation if the pipeline is in bad condition?  \\ \hline
+Distance & Long/moderate/short  \\ \hline
+Location & Urban/rural/mixed/sub-sea  \\ \hline
+%Medium & Oil/Gas/mixed \\ \hline%
+\end{tabular}
+\end{table}
+
+
+falar sobre:
+\begin{itemize}
+    \item Pipeline type
+    \item Material type
+    \item Location type
+    \item Access requirement
+    \item Pipeline condition related limitations
+    \item Pipeline size related limitations
+    \item Destructive/non-destructive
+    \item Trenchless/excavation
+\end{itemize}
+
+\subsection{\textbf{Evaluation of technical suitability.}}
+The utility evaluates whether the potential options will meet its specific needs, for example, by providing suitable data and/or level of decision support required.
+\emph{Trazer table 7}
+\subsection{\textbf{Evaluation of technical capability.}}
+\subsection{\textbf{Evaluation of performances indicators.}}
+\subsection{\textbf{Economic evaluation.}}
+
+
+% ---
+% Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
+% ---
+\bookmarksetup{startatroot}% 
+% ---
+
+% ---
+% Conclusão
+% ---
+\section{\textbf{CONCLUSION (ARIAL 12)}}
+
+In this document, the guidelines that should be followed by all authors for the publication of the manuscripts were described. As observed in these guidelines, the manuscript should be sent through the link to be provided at a later date.
+The conclusion should not contain citations/references.
+
+
+\subsection*{\textbf{Acknowledgments}}
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\vspace*{1.5cm}
+
+\bibliographystyle{abntex2-num}
+\bibliography{abntex2-modelo-references}
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+\begin{apendicesenv}
+
+% ----------------------------------------------------------
+\section*{OTHER INFORMATION}
+\begin{enumerate}[label=\alph*)]
+   \item Manuscripts and information included therein are the responsibility of the authors and may not represent the opinion of \textbf{VII SIINTEC}.
+   \item The authors accept that \textbf{VII SIINTEC} has full rights to the submitted manuscripts and may include them in the proceedings, print them and disclose them, without payment of any kind.
+   \item Manuscripts will be evaluated by reviewers invited by the Scientific Committee of the Event. Only accepted manuscripts can be presented and published at the event.
+\end{enumerate}
+
+\raggedright For additional clarifications, contact:
+
+Organizing Committee of the Event - \textit{siintec@fieb.org.br}
+
+SENAI CIMATEC
+% ----------------------------------------------------------
+
+\end{apendicesenv}
+% ---
+
+
+% ----------------------------------------------------------
+% Agradecimentos
+% ----------------------------------------------------------
+
+% \section*{Agradecimentos}
+% Texto sucinto aprovado pelo periódico em que será publicado. Último 
+% elemento pós-textual.
+
+\end{document}
+ q
