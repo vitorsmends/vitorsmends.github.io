@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="gallery.css" />
   <style>
     :root {
       --bg:      #f8f6f2;
@@ -17,6 +18,79 @@
       --text:    #1c1c1c;
       --muted:   #888;
       --radius:  10px;
+
+
+/* Minimalist Gallery Strip */
+#gallery {
+  padding: 2.5rem 0;
+}
+
+.gallery-strip {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Esconde a barra de rolagem padrão em navegadores modernos para um visual mais limpo */
+.gallery-strip::-webkit-scrollbar {
+  height: 4px;
+}
+
+.gallery-strip::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.gallery-strip::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+.gallery-strip-item {
+  position: relative;
+  flex: 0 0 auto;
+  width: 180px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background-color: var(--background-alt);
+}
+
+.gallery-strip-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+/* Efeito sutil de zoom ao passar o mouse */
+.gallery-strip-item:hover img {
+  transform: scale(1.06);
+}
+
+/* Legenda compacta que aparece apenas no hover */
+.gallery-strip-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 6px;
+  font-size: 0.75rem;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.gallery-strip-item:hover .gallery-strip-caption {
+  opacity: 1;
+}
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -214,6 +288,8 @@
   </div>
 </nav>
 
+
+
 <!-- HERO -->
 <section id="hero">
   <div class="container">
@@ -224,9 +300,9 @@
       <div class="hero-text">
         <p class="hero-greeting">Hello, I am</p>
         <h1 class="hero-name">Vitor Mendes</h1>
-        <p class="hero-role">Robotics Engineer · MSc Student, BSc in Electrical Engineering</p>
+        <p class="hero-role">Robotics Engineer and Software Developer</p>
         <p class="hero-bio">
-          Developing Robots since 2022 for Oil and Gas Industry at SENAI CIMATEC. Currently working with marine robotics and humanoids, reinforcement learning, MPC and SLAM.
+          Developing Robots since 2022 for Oil and Gas Industry at SENAI CIMATEC. Currently working with marine robotics, soft robotics and humanoids, reinforcement learning, MPC and SLAM.
         </p>
         <div class="hero-btns">
           <a href="#projects" class="btn btn-solid">See Projects</a>
@@ -250,31 +326,45 @@
     <div class="timeline">
 
       <div class="timeline-item">
-        <span class="timeline-period">Apr 2025 — Present</span>
+        <span class="timeline-period">Apr 2025 to Present</span>
         <div>
-          <p class="timeline-title">Robotics Software Engineer (Specialist II)</p>
+          <p class="timeline-title">Robotics Engineer</p>
           <p class="timeline-org">SENAI CIMATEC · Salvador, Brazil</p>
           <p class="timeline-desc">
-            • Development of ROS 2-based robotic systems in C++ and Python<br>
-            • Integration of sensors and actuators for subsea and industrial robotics<br>
-            • Design and validation of control systems for manipulators and ROVs<br>
-            • Simulation and debugging using Gazebo and RViz<br>
-            • Deployment and testing with structured validation workflows
+            • Develoepd software architecture and system integration in C++17/20 and Python using ROS 2, Docker, and Git on industrial robot platforms<br>
+            • Prepared and conducted field testing and technology qualification campaigns in petrochemical refineries and marine vessels for operators like Shell and Petrobras<br>
+            • Created and executed comprehensive integration test procedures, system verification protocols, and validation plans in operational environments<br>
+            • Implemented reliable ROS 2 driver layers and hardware abstraction interfaces for multi-sensor systems including LiDARs, IMUs, and cameras<br>
+            • Engineered autonomous navigation and localization pipelines using Nav2 and SLAM Toolbox, optimizing real-time performance on physical hardware
           </p>
         </div>
       </div>
 
       <div class="timeline-item">
-        <span class="timeline-period">Oct 2022 — Jan 2025</span>
+        <span class="timeline-period">Oct 2022 to Apr 2025</span>
         <div>
           <p class="timeline-title">Robotics Researcher</p>
           <p class="timeline-org">SENAI CIMATEC · Salvador, Brazil</p>
           <p class="timeline-desc">
-            • Development of robotic solutions for oil & gas inspection<br>
-            • Modeling and control of manipulators and subsea systems<br>
-            • Perception pipelines using machine learning and sensor fusion<br>
-            • Execution of onshore and offshore validation tests<br>
-            • Risk analysis and system validation (FMEA/FMECA)
+            • Designed, implemented, and tuned classic and advanced control systems including PID, model-based predictive control, and inverse dynamics control for trajectory tracking<br>
+            • Designed and drafted electrical diagrams and electronic schematics for custom robotic platforms, managing power distribution and low-level hardware interfaces<br>
+            • Formulated and validated multi-degree-of-freedom mathematical dynamic models, accounting for hydrodynamic forces and structural constraints<br>
+            • Created simulation environments and digital twins of physical systems in Gazebo and physics-based engines to test control laws and perception algorithms<br>
+            • Developed 3D perception scripts using Open3D and PCL, processing point clouds and implementing sensor fusion to support state estimation
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-period">May 2021 to Oct 2022</span>
+        <div>
+          <p class="timeline-title">Research Fellow in Computer Vision</p>
+          <p class="timeline-org">SENAI CIMATEC · Salvador, Brazil</p>
+          <p class="timeline-desc">
+            • Developed and trained convolutional neural network models to automatically detect and classify oil pipeline leaks using thermal and optical imaging data<br>
+            • Designed and assembled the physical experimental setup to simulate pipeline leaks under controlled laboratory conditions, integrating sensors and configuring data acquisition systems<br>
+            • Established structured operational testing procedures, camera calibration protocols, and validation methodologies to guarantee dataset quality and model reliability<br>
+            • Implemented real-time computer vision pipelines and model inference scripts in Python and C++ using PyTorch and OpenCV, following collaborative development workflows with Git
           </p>
         </div>
       </div>
@@ -295,94 +385,135 @@
 
     <div class="gallery-grid">
 
-      <!-- ROBOTICS -->
+      <!-- SOFTWARE DEVELOPMENT -->
       <div class="gallery-card">
         <div class="gallery-info">
-          <p class="gallery-title">Robotics</p>
+          <p class="gallery-title">Software Development</p>
           <div class="tags">
+            <span class="tag">C++17/20</span>
+            <span class="tag">Python</span>
+            <span class="tag">CMake</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Git</span>
+            <span class="tag">GTest</span>
+            <span class="tag">Autoproj</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROBOTICS MIDDLEWARE -->
+      <div class="gallery-card">
+        <div class="gallery-info">
+          <p class="gallery-title">Robotics Middleware</p>
+          <div class="tags">
+            <span class="tag">ROS</span>
             <span class="tag">ROS 2</span>
             <span class="tag">Nav2</span>
             <span class="tag">SLAM Toolbox</span>
-            <span class="tag">Sensor Fusion</span>
+            <span class="tag">ros2_control</span>
           </div>
         </div>
       </div>
 
-      <!-- PROGRAMMING -->
+      <!-- CONTROL & SIMULATION -->
       <div class="gallery-card">
         <div class="gallery-info">
-          <p class="gallery-title">Programming</p>
-          <div class="tags">
-            <span class="tag">C++</span>
-            <span class="tag">Python</span>
-            <span class="tag">MATLAB</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- MACHINE LEARNING -->
-      <div class="gallery-card">
-        <div class="gallery-info">
-          <p class="gallery-title">Machine Learning</p>
-          <div class="tags">
-            <span class="tag">TensorFlow</span>
-            <span class="tag">Stable-Baselines3</span>
-            <span class="tag">Gymnasium</span>
-            <span class="tag">NumPy</span>
-            <span class="tag">SciPy</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- CONTROL & RL -->
-      <div class="gallery-card">
-        <div class="gallery-info">
-          <p class="gallery-title">Control Systems</p>
+          <p class="gallery-title">Control & Simulation</p>
           <div class="tags">
             <span class="tag">PID</span>
-            <span class="tag">MPC</span>
-            <span class="tag">Reinforcement Learning</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- SIMULATION -->
-      <div class="gallery-card">
-        <div class="gallery-info">
-          <p class="gallery-title">Simulation</p>
-          <div class="tags">
+            <span class="tag">Model Predictive Control</span>
+            <span class="tag">Inverse Dynamics</span>
             <span class="tag">Gazebo</span>
+            <span class="tag">MuJoCo</span>
             <span class="tag">Isaac Sim</span>
             <span class="tag">RViz</span>
           </div>
         </div>
       </div>
 
-      <!-- PERCEPTION -->
+      <!-- PERCEPTION & VISION -->
       <div class="gallery-card">
         <div class="gallery-info">
-          <p class="gallery-title">Perception</p>
+          <p class="gallery-title">Perception & Computer Vision</p>
           <div class="tags">
-            <span class="tag">OpenCV</span>
+            <span class="tag">LiDAR Processing</span>
+            <span class="tag">Sensor Fusion</span>
             <span class="tag">PCL</span>
-            <span class="tag">Open 3D</span>
-            <span class="tag">LiDAR</span>
+            <span class="tag">Open3D</span>
+            <span class="tag">CNNs</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">OpenCV</span>
           </div>
         </div>
       </div>
 
-      <!-- SYSTEMS -->
+      <!-- ELECTRICAL & HARDWARE -->
       <div class="gallery-card">
         <div class="gallery-info">
-          <p class="gallery-title">DevOps</p>
+          <p class="gallery-title">Electrical & Hardware Integration</p>
           <div class="tags">
-            <span class="tag">Linux</span>
-            <span class="tag">Docker</span>
-            <span class="tag">Git</span>
-            <span class="tag">GitHub Actions</span>
-
+            <span class="tag">Sensor Integration</span>
+            <span class="tag">Actuator Drivers</span>
+            <span class="tag">Microcontrollers</span>
+            <span class="tag">Electronic Schematics</span>
+            <span class="tag">Electrical Diagrams</span>
           </div>
         </div>
+      </div>
+
+      <!-- SUBSEA & OPERATIONS -->
+      <div class="gallery-card">
+        <div class="gallery-info">
+          <p class="gallery-title">Subsea & Industrial Operations</p>
+          <div class="tags">
+            <span class="tag">Subsea Integration</span>
+            <span class="tag">Operational Testing</span>
+            <span class="tag">Validation Protocols</span>
+            <span class="tag">Technology Qualification</span>
+            <span class="tag">Offshore Campaigns</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="gallery-section">
+  <div class="container">
+    <p class="label">Field Work & Lab Life</p>
+    <h2 class="section-title"></h2>
+    
+    <div class="gallery-strip">
+      
+      <div class="gallery-strip-item">
+        <img src="images/gallery/bluerov_maintenence.JPG" alt="BlueROV maintenance" loading="lazy">
+        <span class="gallery-strip-caption">BlueROV maintenance</span>
+      </div>
+
+      <div class="gallery-strip-item">
+        <img src="images/gallery/refinary_test.JPG" alt="Refinery test" loading="lazy">
+        <span class="gallery-strip-caption">Refinery test</span>
+      </div>
+
+      <div class="gallery-strip-item">
+        <img src="images/gallery/me_at_offshore_test.jpg" alt="Offshore test campaign" loading="lazy">
+        <span class="gallery-strip-caption">Offshore validation</span>
+      </div>
+
+      <div class="gallery-strip-item">
+        <img src="images/gallery/me_ieee_conference.JPG" alt="IEEE conference presentation" loading="lazy">
+        <span class="gallery-strip-caption">IEEE conference</span>
+      </div>
+
+      <div class="gallery-strip-item">
+        <img src="images/gallery/small_rov_test_after_repair.png" alt="Small ROV test after repair" loading="lazy">
+        <span class="gallery-strip-caption">ROV system testing</span>
+      </div>
+
+      <div class="gallery-strip-item">
+        <img src="images/gallery/rov_test_w_soft_manipulator.JPEG" alt="ROV test with soft manipulator" loading="lazy">
+        <span class="gallery-strip-caption">Soft manipulator integration</span>
       </div>
 
     </div>
@@ -422,16 +553,6 @@
 
 <hr class="divider" />
 
-
-      <!--
-        COMO ADICIONAR MÍDIA:
-        Imagem local:  <img src="images/projeto1.jpg" alt="..." />
-        Vídeo local:   <video src="videos/projeto1.mp4" autoplay muted loop playsinline></video>
-        YouTube embed: <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
-        O card inteiro leva ao repositório quando clicado.
-      -->
-
-<!-- GALERIA DE PROJETOS -->
 
 
 <section id="projects">
